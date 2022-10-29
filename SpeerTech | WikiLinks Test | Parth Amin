@@ -1,0 +1,83 @@
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class WikiLinkTest {
+
+	public static void main(String[] args) throws Exception {
+
+	                                	//Wiki();
+		                                //validInteger();
+		
+    System.setProperty("webdriver.gecko.driver","C:\\SeleniumJars\\geckodriver.exe");
+		FirefoxDriver driver = new FirefoxDriver();
+		driver.get("https://en.wikipedia.org/wiki/Elon_Musk");
+    
+    int n = 5;
+		List<WebElement> wikilinks = driver.findElements(By.tagName("a"));
+		System.out.println(wikilinks.size());
+		
+    List<WebElement> wikilinks1 = driver.findElements(By.xpath("(//div[@class='vector-menu-content']/ul)[6]/li"));
+		
+    for(int i=0; i<=n; i++) {
+		try {
+				if(n>=0 && i<=n) {
+			  Thread.sleep(5000);
+			                            //driver.navigate().refresh();
+			wikilinks1.get(i).click(); 
+			
+      Thread.sleep(2000);
+			
+      driver.navigate().back();
+			}
+	      }
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+		                              	/*Set<String> allwindows = driver.getWindowHandles();
+	  	                              Iterator<String> it = allwindows.iterator();
+			                              /*String parentwindow = it.next();
+			                              String childwindow = it.next();*/
+			                              //driver.switchTo().window(childwindow);
+			                              wikilinks.addAll(driver.findElements(By.tagName("a")));
+			                              //driver.switchTo().window(parentwindow);
+			}
+	}
+
+	public static void Wiki() throws Exception
+	
+  {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter URL");
+		String URL = sc.nextLine();
+		//System.out.println(URL);
+		
+		if(URL.contains("wikipedia.org"))
+			System.out.println("It is a valid link");
+	else
+	throw new Exception("it is not a valid link");
+	}
+	
+	//Q.2
+	
+	public static void validInteger() throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter valid integer between 1 to 20");
+		String str = sc.nextLine();
+		//System.out.println(URL);
+		int n = Integer.parseInt(str);
+		
+		if(n>0 && n<21)
+		System.out.println("it is a valid integer number");
+		else 
+			throw new Exception("it is not a valid number");	
+	}			
+	
+}
